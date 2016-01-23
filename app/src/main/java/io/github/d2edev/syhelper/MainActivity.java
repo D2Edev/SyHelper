@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -13,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import io.github.d2edev.syhelper.entities.Letter;
 import io.github.d2edev.syhelper.logic.CreateListener;
 import io.github.d2edev.syhelper.logic.MyDragListener;
 import io.github.d2edev.syhelper.logic.MyTouchListener;
@@ -21,48 +21,39 @@ import io.github.d2edev.syhelper.logic.MyTouchListener;
 public class MainActivity extends AppCompatActivity implements CreateListener {
     public static final String TAG = "TAG_MainActivity";
 
-    private Letter[] letters;
-    private int rowLength;
-    private TextView alphabetItem;
+
     private int unit;
     private LayoutInflater layoutInflater;
-    private TableRow tableRow01;
-    private TableRow tableRow02;
-    private TableRow tableRow03;
-    private String abb_line01;
+    private TableRow[] tableRow = new TableRow[3];
+    private String[] letterRow = new String[3];
+    private String vovels;
+    public static final int BIG_LETTER_MULTIPLIER=32;
+    public static final int SMALL_LETTER_MULTIPLIER=8;
+    public static final int SMALL_LETTER_BOX_MULTIPLIER=11;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initVariables();
+        //set drag listener on "accepting" container
         findViewById(R.id.container_big_letters).setOnDragListener(new MyDragListener(this));
+        //set click listener which removes all letters from contaner on button click
         findViewById(R.id.btn_clear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((LinearLayout)findViewById(R.id.container_big_letters)).removeAllViews();
+                ((LinearLayout) findViewById(R.id.container_big_letters)).removeAllViews();
             }
         });
 
 
-        tableRow01 = (TableRow) findViewById(R.id.row01);
-        tableRow02 = (TableRow) findViewById(R.id.row02);
-        tableRow03 = (TableRow) findViewById(R.id.row03);
 
-        TableRow temp;
-        for (int i = 0; i < 11; i++) {
-
-            tableRow01.addView(createMyTextView(String.valueOf(letters[i].getLetter())));
-
-        }
-        for (int i = 11; i < 22; i++) {
-
-            tableRow02.addView(createMyTextView(String.valueOf(letters[i].getLetter())));
-
-        }
-        for (int i = 22; i < 33; i++) {
-
-            tableRow03.addView(createMyTextView(String.valueOf(letters[i].getLetter())));
+        for (int i = 0; i < letterRow.length; i++) {
+            for (int j = 0; j < letterRow[i].length(); j++) {
+                tableRow[i].addView(createMyTextView(String.valueOf(letterRow[i].charAt(j))));
+            }
 
         }
 
@@ -71,27 +62,8 @@ public class MainActivity extends AppCompatActivity implements CreateListener {
 
     @Override
     public View createMyTextView(String letter) {
-        TableRow temp;
-        switch (getLetterRow(letter)){
-            case 1:{
-                temp=tableRow01;
-                break;
-            }
-            case 2:{
-                temp=tableRow02;
-                break;
-            }
-            case 3:{
-                temp=tableRow03;
-                break;
-            }
-            default: {
-                temp=tableRow01;
-            }
-        }
-
-        View view = layoutInflater.inflate(R.layout.alphabet_item, temp, false);
-        alphabetItem = (TextView) view.findViewById(R.id.textView);
+        View view = layoutInflater.inflate(R.layout.alphabet_item, tableRow[getRowIndex(letter)], false);
+        TextView alphabetItem = (TextView) view.findViewById(R.id.textView);
         alphabetItem.setText(letter);
 
         if (isVovel(letter)) {
@@ -99,27 +71,32 @@ public class MainActivity extends AppCompatActivity implements CreateListener {
         } else {
             alphabetItem.setTextColor(Color.BLUE);
         }
-        alphabetItem.setTextSize(TypedValue.COMPLEX_UNIT_PX, unit * 8);
+LinearLayout.LayoutParams llp=(LinearLayout.LayoutParams)alphabetItem.getLayoutParams();
+       llp.width=unit*SMALL_LETTER_BOX_MULTIPLIER;
+       llp.height=unit*SMALL_LETTER_BOX_MULTIPLIER;
+        alphabetItem.setLayoutParams(llp);
+        alphabetItem.setTextSize(TypedValue.COMPLEX_UNIT_PX, unit * SMALL_LETTER_MULTIPLIER);
+
         alphabetItem.setOnTouchListener(new MyTouchListener(this));
         return alphabetItem;
     }
 
-    private int getLetterRow(String letter) {
-        int row=1;
-        String alphabet = getString(R.string.alphabet_russian);
-        for (int i = 0; i <alphabet.length(); i++) {
-            if(letter.charAt(0)==alphabet.charAt(i)){
-                row=i/rowLength;
-                break;
+    private int getRowIndex(String letter) {
+        int row = -1;
+        for (int i = 0; i < letterRow.length; i++) {
+            for (int j = 0; j < letterRow[i].length(); j++) {
+                if (letter.charAt(0) == letterRow[i].charAt(j)) {
+                    row = i;
+                    break;
+                }
             }
-
+            if (row != -1) break;
         }
         return row;
     }
 
     private boolean isVovel(String letter) {
         boolean isVovel = false;
-        String vovels = getString(R.string.alphabet_russian_vowels);
         for (int i = 0; i < vovels.length(); i++) {
             if (letter.charAt(0) == vovels.charAt(i)) {
                 isVovel = true;
@@ -139,24 +116,13 @@ public class MainActivity extends AppCompatActivity implements CreateListener {
         layoutInflater = getLayoutInflater();
         //set quantizer for UI
         unit = currSideLimit() / 90;
-
-        String alphabet = getString(R.string.alphabet_russian);
-        String vovels = getString(R.string.alphabet_russian_vowels);
-        //set max qty for letters in row
-        rowLength = alphabet.length() / 3;
-        //init and fill letters array
-        letters = new Letter[alphabet.length()];
-        for (int i = 0; i < alphabet.length(); i++) {
-            letters[i] = new Letter();
-            letters[i].setLetter(alphabet.charAt(i));
-            //check if letter is vovel
-            for (int j = 0; j < vovels.length(); j++) {
-                if (alphabet.charAt(i) == vovels.charAt(j)) {
-                    letters[i].setVovel(true);
-                    break;
-                }
-            }
-        }
+        tableRow[0] = (TableRow) findViewById(R.id.row01);
+        tableRow[1] = (TableRow) findViewById(R.id.row02);
+        tableRow[2] = (TableRow) findViewById(R.id.row03);
+        letterRow[0] = getString(R.string.alphabet_russian_line01);
+        letterRow[1] = getString(R.string.alphabet_russian_line02);
+        letterRow[2] = getString(R.string.alphabet_russian_line03);
+        vovels = getString(R.string.alphabet_russian_vowels);
 
     }
 
