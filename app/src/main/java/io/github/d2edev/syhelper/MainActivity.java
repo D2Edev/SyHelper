@@ -87,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
         String temp_consonants= consonants[0]+(easySyllable?"":consonants[1]);
         int random_index=(int)(Math.random()*temp_consonants.length());
         View view = createMyTextView(temp_consonants.substring(random_index,random_index+1),BIG_TEXT_MULTIPLIER);
+        view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        container.addView(view);
+        random_index=(int)(Math.random()*vovels.length());
+        view = createMyTextView(vovels.substring(random_index,random_index+1),BIG_TEXT_MULTIPLIER);
+        view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
         container.addView(view);
 
     }

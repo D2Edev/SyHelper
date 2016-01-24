@@ -31,13 +31,9 @@ public class MyTouchListener implements View.OnTouchListener {
                 view.startDrag(data, shadowBuilder, view, 0);
                 view.setVisibility(View.INVISIBLE);
             }else{
-                View newView = mainActivity.createMyTextView(letter,MainActivity.BIG_TEXT_MULTIPLIER);
+                View newView = mainActivity.createMyTextView(letter,MainActivity.SMALL_TEXT_MULTIPLIER);
                 view.startDrag(data, shadowBuilder, newView, 0);
             }
-
-
-
-
             return true;
         } else {
             return false;

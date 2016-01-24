@@ -39,10 +39,8 @@ public class MyDragListener implements View.OnDragListener {
                 break;
             case DragEvent.ACTION_DROP:
                 // Dropped, reassign View to ViewGroup
-                if (owner!=null) {
+                if (owner != null) {
                     owner.removeView(view);
-                } else {
-
                 }
                 LinearLayout container = (LinearLayout) v;
                 ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX, ((MainActivity) activity).getUnit() * MainActivity.BIG_TEXT_MULTIPLIER);
@@ -53,8 +51,10 @@ public class MyDragListener implements View.OnDragListener {
             case DragEvent.ACTION_DRAG_ENDED:
                 v.setBackgroundResource(R.drawable.big_letter_container);
                 if (dropEventNotHandled(event)) {
-                    if(owner!=null){owner.removeView(view);}
-  //                  view.setVisibility(View.VISIBLE);
+                    if (owner != null) {
+                        owner.removeView(view);
+                    }
+                    //                  view.setVisibility(View.VISIBLE);
                 }
             default:
                 break;
