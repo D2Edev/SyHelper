@@ -1,7 +1,6 @@
 package io.github.d2edev.syhelper.logic;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.DragEvent;
 import android.view.View;
@@ -46,7 +45,7 @@ public class MyDragListener implements View.OnDragListener {
 
                 }
                 LinearLayout container = (LinearLayout) v;
-                ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX, ((MainActivity) activity).getUnit() * MainActivity.BIG_LETTER_MULTIPLIER);
+                ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX, ((MainActivity) activity).getUnit() * MainActivity.BIG_TEXT_MULTIPLIER);
                 ((TextView) view).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 container.addView(view);
                 view.setVisibility(View.VISIBLE);

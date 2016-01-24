@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">SyHelper</string>
     <string name="action_settings">Settings</string>
-    <string name="alphabet_russian_vowels">АЕЁИОУЫЪЭЮЯ</string>
-    <string name="alphabet_russian">АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ</string>
-    <string name="alphabet_russian_consonants">БВГДЖЗЙКЛМНПРСТФХЦЧШЩЬЪ</string>
+    <string name="alphabet_russian_vowels">АОУЕИЁЫЭЮЯ</string>
+    <string name="alphabet_russian">ЙЦУКЕНГШЩЗХЪ ФЫВАПРОЛДЖЭ ЯЧСМИТЬБЮЁ</string>
+    <string name="alphabet_russian_consonants">БВГДКЛМНПСТ ЖЗРФХЦЧШЩЙ</string>
     <string name="alphabet_russian_signs">Ь Ъ</string>
-    <string name="alphabet_russian_line01">ЙЦУКЕНГШЩЗХЪ</string>
-    <string name="alphabet_russian_line02">ФЫВАПРОЛДЖЭ</string>
-    <string name="alphabet_russian_line03">ЯЧСМИТЬБЮЁ</string>
+    <string name="btnClear">Clear</string>
+    <string name="btnRandom">Random</string>
+
 </resources>
