@@ -1,94 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:id="@+id/container_big_letters"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/big_letter_container"
-        android:gravity="center"
-        android:orientation="horizontal">
+    android:gravity="center"
+    android:id="@+id/container_main">
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/container_tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <TableLayout
-            android:id="@+id/container_letters"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:padding="4dp">
-
-            <TableRow
-                android:id="@+id/row01"
-                android:gravity="center"
-                android:layout_width="match_parent">
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/row02"
-                android:gravity="center"
-                android:layout_width="match_parent">
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/row03"
-                android:gravity="center"
-                android:layout_width="match_parent">
-
-            </TableRow>
-        </TableLayout>
-
-        <LinearLayout
-            android:id="@+id/container_buttons"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="13"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btn_random"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/button_style"
-                android:text="@string/btnRandom"
-                android:textSize="8sp"
-                android:layout_marginLeft="4dp" />
-
-            <Button
-                android:id="@+id/btn_clear"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/button_style"
-                android:text="@string/btnClear"
-                android:textSize="8sp"
-                android:layout_marginLeft="4dp" />
-        </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package io.github.d2edev.syhelper.logic;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.util.TypedValue;
 import android.view.DragEvent;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import io.github.d2edev.syhelper.DraggingFragment;
 import io.github.d2edev.syhelper.MainActivity;
 import io.github.d2edev.syhelper.R;
 
@@ -16,10 +18,10 @@ import io.github.d2edev.syhelper.R;
  */
 public class MyDragListener implements View.OnDragListener {
 
-    private Activity activity;
+    private Fragment fragment;
 
-    public MyDragListener(Activity activity) {
-        this.activity = activity;
+    public MyDragListener(Fragment fragment) {
+        this.fragment = fragment;
     }
 
 
@@ -43,7 +45,7 @@ public class MyDragListener implements View.OnDragListener {
                     owner.removeView(view);
                 }
                 LinearLayout container = (LinearLayout) v;
-                ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX, ((MainActivity) activity).getUnit() * MainActivity.BIG_TEXT_MULTIPLIER);
+                ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX, ((DraggingFragment) fragment).getUnit() * MainActivity.BIG_TEXT_MULTIPLIER);
                 ((TextView) view).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 container.addView(view);
                 view.setVisibility(View.VISIBLE);

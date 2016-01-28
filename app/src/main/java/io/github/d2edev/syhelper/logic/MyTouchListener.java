@@ -1,5 +1,6 @@
 package io.github.d2edev.syhelper.logic;
 
+import android.app.Fragment;
 import android.content.ClipData;
 import android.view.MotionEvent;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import io.github.d2edev.syhelper.DraggingFragment;
 import io.github.d2edev.syhelper.MainActivity;
 import io.github.d2edev.syhelper.R;
 
@@ -14,10 +16,10 @@ import io.github.d2edev.syhelper.R;
  * Created by d2e on 22.01.16.
  */
 public class MyTouchListener implements View.OnTouchListener {
-    private MainActivity mainActivity;
+    private Fragment fragment;
 
-    public MyTouchListener(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
+    public MyTouchListener(Fragment fragment) {
+        this.fragment = fragment;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class MyTouchListener implements View.OnTouchListener {
                 view.startDrag(data, shadowBuilder, view, 0);
                 view.setVisibility(View.INVISIBLE);
             }else{
-                View newView = mainActivity.createMyTextView(letter,MainActivity.SMALL_TEXT_MULTIPLIER);
+                View newView = ((DraggingFragment)fragment).createMyTextView(letter, MainActivity.SMALL_TEXT_MULTIPLIER);
                 view.startDrag(data, shadowBuilder, newView, 0);
             }
             return true;
