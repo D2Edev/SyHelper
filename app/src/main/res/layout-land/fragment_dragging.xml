@@ -1,97 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dragging_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/dragging_fragment"
-    android:tag="@string/tagDragFragment"
-    >
+    android:padding="@dimen/min_margin"
+    android:tag="@string/tagDragFragment">
 
     <LinearLayout
         android:id="@+id/container_big_letters"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/space"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
         android:background="@drawable/big_letter_container"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal" />
 
+    <Space
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/container_tools"
+    <TableLayout
+        android:id="@+id/container_letters"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_below="@+id/space"
+        android:layout_toLeftOf="@+id/btn_random"
+        android:gravity="center">
 
-        <TableLayout
-            android:id="@+id/container_letters"
+        <TableRow
+            android:id="@+id/row01"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:padding="4dp">
+            android:gravity="center">
 
-            <TableRow
-                android:id="@+id/row01"
-                android:gravity="center"
-                android:layout_width="match_parent">
+        </TableRow>
 
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/row02"
-                android:gravity="center"
-                android:layout_width="match_parent">
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/row03"
-                android:gravity="center"
-                android:layout_width="match_parent">
-
-            </TableRow>
-        </TableLayout>
-
-        <LinearLayout
-            android:id="@+id/container_buttons"
+        <TableRow
+            android:id="@+id/row02"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="13"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:gravity="center">
 
-            <Button
-                android:id="@+id/btn_random"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/button_style"
-                android:text="@string/btnRandom"
-                android:textSize="8sp"
-                android:layout_marginLeft="4dp" />
+        </TableRow>
 
-            <Button
-                android:id="@+id/btn_clear"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/button_style"
-                android:text="@string/btnClear"
-                android:textSize="8sp"
-                android:layout_marginLeft="4dp" />
-        </LinearLayout>
+        <TableRow
+            android:id="@+id/row03"
+            android:layout_width="match_parent"
+            android:gravity="center">
 
-    </LinearLayout>
+        </TableRow>
+    </TableLayout>
 
-</LinearLayout>
+
+    <Button
+        android:id="@+id/btn_random"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/space"
+        android:layout_margin="@dimen/min_margin"
+        style="@style/AppTheme.ButonStyle"
+        android:text="@string/btnRandom"
+        android:textSize="@dimen/font_fixed_20"
+        />
+
+    <Button
+        android:id="@+id/btn_clear"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btn_random"
+        android:layout_margin="@dimen/min_margin"
+        style="@style/AppTheme.ButonStyle"
+        android:text="@string/btnClear"
+        android:textSize="@dimen/font_fixed_20"
+        />
+
+
+</RelativeLayout>

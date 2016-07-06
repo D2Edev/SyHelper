@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import io.github.d2edev.syhelper.logic.MyDragListener;
 import io.github.d2edev.syhelper.logic.MyTouchListener;
+import io.github.d2edev.syhelper.util.Utiltity;
 
 public class DraggingFragment extends Fragment {
     private LayoutInflater layoutInflater;
@@ -58,7 +59,7 @@ public class DraggingFragment extends Fragment {
         mainActivity.findViewById(R.id.container_big_letters).setOnDragListener(new MyDragListener(this));
         //set click listener which removes all letters from contaner on button click
         Button btnRandom = (Button) mainActivity.findViewById((R.id.btn_random));
-        btnRandom.setTextSize(TypedValue.COMPLEX_UNIT_PX, unit * MainActivity.BUTTON_TEXT_MULTIPLIER);
+//        btnRandom.setTextSize(TypedValue.COMPLEX_UNIT_PX, unit * MainActivity.BUTTON_TEXT_MULTIPLIER);
         Button btnClear = (Button) mainActivity.findViewById(R.id.btn_clear);
         btnRandom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +67,7 @@ public class DraggingFragment extends Fragment {
                 showRandomSyllable();
             }
         });
-        btnClear.setTextSize(TypedValue.COMPLEX_UNIT_PX, unit * MainActivity.BUTTON_TEXT_MULTIPLIER);
+//        btnClear.setTextSize(TypedValue.COMPLEX_UNIT_PX, unit * MainActivity.BUTTON_TEXT_MULTIPLIER);
 
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +153,7 @@ public class DraggingFragment extends Fragment {
         mainActivity =(MainActivity)getActivity();
         layoutInflater = mainActivity.getLayoutInflater();
         //set quantizer for UI
-        unit = mainActivity.currSideLimit() / MainActivity.HEIGHT_DIVIDER;
+        unit = Utiltity.getScreenHeight(getActivity()) / MainActivity.HEIGHT_DIVIDER;
         tableRow[0] = (TableRow) mainActivity.findViewById(R.id.row01);
         tableRow[1] = (TableRow) mainActivity.findViewById(R.id.row02);
         tableRow[2] = (TableRow) mainActivity.findViewById(R.id.row03);

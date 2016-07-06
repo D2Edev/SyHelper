@@ -3,30 +3,21 @@ package io.github.d2edev.syhelper;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
-import io.github.d2edev.syhelper.logic.MyDragListener;
-import io.github.d2edev.syhelper.logic.MyTouchListener;
+import io.github.d2edev.syhelper.util.Utiltity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "TAG_MainActivity";
 
+
+    //TODO move to single activity
+    //TODO structure code
 
     public static final int BIG_TEXT_MULTIPLIER = 28;
     public static final int SMALL_TEXT_MULTIPLIER = 6;
@@ -41,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.container_main,new DraggingFragment(),null);
         transaction.commit();
@@ -86,35 +79,6 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
-    public int currSideLimit() {
-        int sideLimit;
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        sideLimit = metrics.heightPixels;
-//        if (sideLimit > metrics.heightPixels) {
-//            sideLimit = metrics.heightPixels - getActionBarHeight();
-//        }
-//        //Log.d(TAG, " " + metrics.heightPixels + " "+ metrics.widthPixels);
-        Log.d(TAG, " " + sideLimit);
-//        //Log.d(TAG, " " +getActionBarHeight());
-
-        return sideLimit;
-    }
-
-    private int getActionBarHeight() {
-        int actionBarHeight = 0;
-        TypedValue tv = new TypedValue();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv,
-                    true))
-                actionBarHeight = TypedValue.complexToDimensionPixelSize(
-                        tv.data, getResources().getDisplayMetrics());
-        } else {
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data,
-                    getResources().getDisplayMetrics());
-        }
-        return actionBarHeight;
-    }
 
 
 

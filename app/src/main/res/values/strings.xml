@@ -6,8 +6,8 @@
     <string name="alphabet_russian">ЙЦУКЕНГШЩЗХЪ ФЫВАПРОЛДЖЭ ЯЧСМИТЬБЮЁ</string>
     <string name="alphabet_russian_consonants">БВГДКЛМНПСТ ЖЗРФХЦЧШЩЙ</string>
     <string name="alphabet_russian_signs">Ь Ъ</string>
-    <string name="btnClear">Clear</string>
-    <string name="btnRandom">Random</string>
+    <string name="btnClear">CLEAR</string>
+    <string name="btnRandom">RANDOM</string>
     <string name="tagDragFragment">DragFragment</string>
     <string name="action_about_info01">SYLLABLE HELPER</string>
     <string name="action_about_info02">Utility to help children learn to read\nd2e DEVELOPMENT &#169;2016\nvisit us: d2edev.github.io</string>
